@@ -1,14 +1,12 @@
 # Chart Generator MCP server
 
-This repository contains an MCP server that generates charts based on input data. 
+An MCP server that generates charts based on input data. 
 
 ## Status
 🚧 **In Development** 🚧
 
-This project is currently under development. Features and documentation may be incomplete or subject to change.
-
 ## Features
-- Generates charts dynamically based on provided input data.
+- Generates charts dynamically based on provided input data (natural language).
 - Built using MCP Python SDK.
 
 ---
