@@ -1,0 +1,2 @@
+quickchart.io
+"mcp[cli]"
