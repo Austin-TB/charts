@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastmcp>=2.2.1",
     "httpx>=0.28.1",
     "mcp[cli]>=1.6.0",
     "quickchart-io>=2.0.0",

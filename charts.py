@@ -85,73 +85,72 @@ def create_chart_url(
 )
 def get_chartjs_schema_info() -> str:
     """Returns helpful schema information and examples for Chart.js config."""
-    info = 
-    """
-        Chart.js Configuration Structure for QuickChart:
+    info = """
+            Chart.js Configuration Structure for QuickChart:
 
-        The main keys are 'type', 'data', and optionally 'options'.
+            The main keys are 'type', 'data', and optionally 'options'.
 
-        1.  **`type`**: string (Required)
-            *   Common values: "bar", "line", "pie", "doughnut", "radar", "polarArea", "scatter", "bubble"
+            1.  **`type`**: string (Required)
+                *   Common values: "bar", "line", "pie", "doughnut", "radar", "polarArea", "scatter", "bubble"
 
-        2.  **`data`**: object (Required)
-            *   `labels`: list[string] - Needed for axes/segments in most chart types.
-                *   Example: `["Jan", "Feb", "Mar"]`
-            *   `datasets`: list[object] - Each object is a data series.
-                *   `label`: string (Required) - Name for the legend/tooltip.
-                *   `data`: list[number | object] (Required) - The data points.
-                    *   For bar/line/pie etc.: `[10, 20, 30]`
-                    *   For scatter/bubble: `[{'x': 10, 'y': 20}, {'x': 15, 'y': 25}]` or `[{'x': 1, 'y': 1, 'r': 5}]` (bubble radius)
-                *   `backgroundColor`: string | list[string] (Optional) - Fill color(s). Example: `"rgba(255, 99, 132, 0.2)"` or `["red", "blue", "green"]`.
-                *   `borderColor`: string | list[string] (Optional) - Border color(s). Example: `"rgb(255, 99, 132)"`.
-                *   `fill`: boolean | string (Optional, for line/radar) - e.g., `false` or `'origin'`.
-                *   `tension`: number (Optional, for line) - Curve tension (0 for straight lines). Example: `0.1`.
+            2.  **`data`**: object (Required)
+                *   `labels`: list[string] - Needed for axes/segments in most chart types.
+                    *   Example: `["Jan", "Feb", "Mar"]`
+                *   `datasets`: list[object] - Each object is a data series.
+                    *   `label`: string (Required) - Name for the legend/tooltip.
+                    *   `data`: list[number | object] (Required) - The data points.
+                        *   For bar/line/pie etc.: `[10, 20, 30]`
+                        *   For scatter/bubble: `[{'x': 10, 'y': 20}, {'x': 15, 'y': 25}]` or `[{'x': 1, 'y': 1, 'r': 5}]` (bubble radius)
+                    *   `backgroundColor`: string | list[string] (Optional) - Fill color(s). Example: `"rgba(255, 99, 132, 0.2)"` or `["red", "blue", "green"]`.
+                    *   `borderColor`: string | list[string] (Optional) - Border color(s). Example: `"rgb(255, 99, 132)"`.
+                    *   `fill`: boolean | string (Optional, for line/radar) - e.g., `false` or `'origin'`.
+                    *   `tension`: number (Optional, for line) - Curve tension (0 for straight lines). Example: `0.1`.
 
-        3.  **`options`**: object (Optional) - For customization.
-            *   `title`: object - Example: `{ "display": true, "text": "My Chart Title" }`
-            *   `legend`: object - Example: `{ "display": true, "position": "top" }` (positions: 'top', 'left', 'bottom', 'right')
-            *   `scales`: object (For charts with axes like bar, line, scatter)
-                *   `xAxes`: list[object] - Configuration for X axis/axes.
-                *   `yAxes`: list[object] - Configuration for Y axis/axes.
-                    *   Each axis object: `{ "ticks": { "beginAtZero": true }, "scaleLabel": { "display": true, "labelString": "Value" } }`
-            *   `plugins`: object - For Chart.js plugins.
-                *   `datalabels`: object - Example: `{ "display": true, "color": "white" }` (requires QuickChart support for the plugin)
+            3.  **`options`**: object (Optional) - For customization.
+                *   `title`: object - Example: `{ "display": true, "text": "My Chart Title" }`
+                *   `legend`: object - Example: `{ "display": true, "position": "top" }` (positions: 'top', 'left', 'bottom', 'right')
+                *   `scales`: object (For charts with axes like bar, line, scatter)
+                    *   `xAxes`: list[object] - Configuration for X axis/axes.
+                    *   `yAxes`: list[object] - Configuration for Y axis/axes.
+                        *   Each axis object: `{ "ticks": { "beginAtZero": true }, "scaleLabel": { "display": true, "labelString": "Value" } }`
+                *   `plugins`: object - For Chart.js plugins.
+                    *   `datalabels`: object - Example: `{ "display": true, "color": "white" }` (requires QuickChart support for the plugin)
 
-        Example (Line Chart):
+            Example (Line Chart):
+                {
+                "type": "line",
+                "data": {
+                    "labels": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+                    "datasets": [{
+                    "label": "Website Views",
+                    "data": [120, 150, 110, 180, 160],
+                    "fill": false,
+                    "borderColor": "rgb(75, 192, 192)",
+                    "tension": 0.1
+                    }]
+                },
+                "options": {
+                    "title": { "display": true, "text": "Website Views Per Day" },
+                    "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] }
+                    }
+                }
+
+            Example (Pie Chart):
             {
-            "type": "line",
+            "type": "pie",
             "data": {
-                "labels": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+                "labels": ["Red", "Blue", "Yellow"],
                 "datasets": [{
-                "label": "Website Views",
-                "data": [120, 150, 110, 180, 160],
-                "fill": false,
-                "borderColor": "rgb(75, 192, 192)",
-                "tension": 0.1
+                "label": "Colors",
+                "data": [300, 50, 100],
+                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
                 }]
             },
             "options": {
-                "title": { "display": true, "text": "Website Views Per Day" },
-                "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] }
+                "title": { "display": true, "text": "Color Distribution" }
                 }
             }
-
-        Example (Pie Chart):
-        {
-        "type": "pie",
-        "data": {
-            "labels": ["Red", "Blue", "Yellow"],
-            "datasets": [{
-            "label": "Colors",
-            "data": [300, 50, 100],
-            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-            }]
-        },
-        "options": {
-            "title": { "display": true, "text": "Color Distribution" }
-            }
-        }
-    """
+        """
     return info
 
 if __name__ == "__main__":
